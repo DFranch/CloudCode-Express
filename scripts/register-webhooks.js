@@ -82,7 +82,7 @@ function getServerFunctions() {
 // Call the Hooks API and register/update triggers
 function registerTriggers(triggerType) {
   var promise = Parse.Promise.as();
-  Webhooks.Routes[triggerType].forEach(function(item) {
+  serverHooks[triggerType].forEach(function(item) {
     var url = baseURL + 'webhooks/' + triggerType + '_' + item;
     var data = getAuthenticatedRequestData();
     data['className'] = item;
@@ -131,7 +131,7 @@ function registerAfterDeletes() {
 // Call the Hooks API and register cloud functions
 function registerFunctions() {
   var promise = Parse.Promise.as();
-  Webhooks.Routes['function'].forEach(function(item) {
+  serverHooks['function'].forEach(function(item) {
     var url = baseURL + 'webhooks/function_' + item;
     var data = getAuthenticatedRequestData();
     data['functionName'] = item;
